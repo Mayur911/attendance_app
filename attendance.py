@@ -3,15 +3,14 @@
 #INSTALL CHROME (ONE TIME PROCESS)
 #USE THIS SCRIPT TO RUN CHROME (PROVIDED IN THE REPO)
 # ./chromedriver 
-
 import time
 from selenium import webdriver
-USER_NAME = '20003'
-PASSWORD = '20003'
-from_day = 20
+USER_NAME = '8270'
+PASSWORD = '8270'
+from_day = 27
 from_month = 12
 from_year = 2016
-to_day = 20
+to_day = 29
 to_month= 12
 to_year=2016
 driver = webdriver.Chrome('./chromedriver')  # Optional argument, if not specified will search path.
@@ -27,6 +26,7 @@ time.sleep(5)
 driver.find_element_by_class_name('metro-purple').click()
 time.sleep(5) # Let the user actually see something!
 #purpose = driver.find_element_by_id('ddlaction').click()
+login_form = driver.find_element_by_css_selector("select#ddlaction  > option[value='/Attendance/AttendanceApplication']").click()
 #time.sleep(2)
 x = True
 thirtyone_month = [1,3,5,7,8,10,12]
@@ -46,14 +46,12 @@ while (x):
 				from_day = 30
 				from_month=from_month-1
 	a = "var date='"+str(from_day)+"/"+str(from_month)+"/"+str(from_year)+"';$('#dtRegularizeDate').val(date);$('#TxtReason').val('others');$('#dtOutDate').val(date);$('#dtNewTimeOut').val('08:00 PM');$('#dtNewTimeIn').val('10:00 AM');$('#btnSaveAndClose').click()"
-	login_form = driver.find_element_by_css_selector("select#ddlaction  > option[value='/Attendance/AttendanceApplication']").click()
-	date = driver.find_element_by_id('dtRegularizeDate')
 	driver.execute_script(a);
 	time.sleep(5)
-	find_element_by_id('btnAdd').click()
+	driver.execute_script("$('#btnAdd')[0].click();")
 	time.sleep(5)
-	from_day=from_day-1;
-	if (from_day < to_day):
+	from_day=from_day+1;
+	if (from_day > to_day):
 		x=False
 time.sleep(5)
 driver.quit()
