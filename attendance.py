@@ -5,14 +5,17 @@
 # ./chromedriver 
 import time
 from selenium import webdriver
-USER_NAME = '8270'
-PASSWORD = '8270'
-from_day = 27
-from_month = 12
-from_year = 2016
-to_day = 29
-to_month= 12
-to_year=2016
+USER_NAME = '9768'
+PASSWORD = 'pass@123'
+date = time.strftime("%d-%m-%Y")
+todays= date.split('-')
+print date
+from_day = int(todays[0]) #change this to todays date (day only) if you want for range of days
+from_month =int(todays[1])
+from_year = int(todays[2])
+to_day = int(todays[0]) # this too
+to_month= int(todays[1])
+to_year=int(todays[2])
 driver = webdriver.Chrome('./chromedriver')  # Optional argument, if not specified will search path.
 driver.get('http://hrms.faasos.io:5005/');
 time.sleep(2) # Let the user actually see something!
