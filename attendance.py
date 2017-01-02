@@ -33,21 +33,24 @@ login_form = driver.find_element_by_css_selector("select#ddlaction  > option[val
 #time.sleep(2)
 x = True
 thirtyone_month = [1,3,5,7,8,10,12]
+y = False
 while (x):
-	if ((from_month-1) == 0):
-		from_month = 12
-		from_year=from_year-1
-	if (from_day == 0):
-		if (from_month in thirtyone_month):
-			from_day = 31
-			from_month=from_month-1
-		else:
-			if ((from_month-1) == 2):
-				from_day=28
+	if (y):
+		if ((from_month-1) == 0):
+			from_month = 12
+			from_year=from_year-1
+		if (from_day == 0):
+			if (from_month in thirtyone_month):
+				from_day = 31
 				from_month=from_month-1
 			else:
-				from_day = 30
-				from_month=from_month-1
+				if ((from_month-1) == 2):
+					from_day=28
+					from_month=from_month-1
+				else:
+					from_day = 30
+					from_month=from_month-1
+	y=True
 	a = "var date='"+str(from_day)+"/"+str(from_month)+"/"+str(from_year)+"';$('#dtRegularizeDate').val(date);$('#TxtReason').val('others');$('#dtOutDate').val(date);$('#dtNewTimeOut').val('08:00 PM');$('#dtNewTimeIn').val('10:00 AM');$('#btnSaveAndClose').click()"
 	driver.execute_script(a);
 	time.sleep(5)
